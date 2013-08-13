@@ -1,0 +1,4 @@
+%h1= @message
+- if @movie.errors
+  - @movie.errors.each do |error|
+    @movie.error

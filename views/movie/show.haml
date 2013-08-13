@@ -1,0 +1,21 @@
+%h1= @title
+%table.pure-table
+  %tbody
+    - unless @movie.thumbnail.nil?
+      %tr
+        %td
+          %img.thumbnail-large{ :src => @movie.thumbnail }
+    %tr
+      %td= @movie.description
+    %tr
+      %td= "Genre(s): #{@movie.genre}"
+    %tr
+      %td= "#{@movie.length} mins"
+    %tr
+      %td.actions
+        %a.pure-button{ :href => "/movie/edit/#{@movie.id}" }
+          %i.icon-edit
+            edit
+        %a.pure-button.pure-button-primary{ :href => "/movie/watch/#{@movie.id}" }
+          %i.icon-play
+            watch

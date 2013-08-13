@@ -1,0 +1,45 @@
+%h1= @title
+%div{ :'ng-app' => "MediaLibrary", :'ng-controller' => "moviesController", :'ng-init' => "init()" }
+  .filters
+    %form.pure-form
+      %label Filter:
+      %input{ :'ng-model' => "keyword", :type => "text" }
+
+      %label Genre:
+      %select{ :'ng-model' => "filterForGenre", :'ng-options' => "genre for genre in genres" }
+        %option{ :value => "" } All
+
+      %label Order by:
+      %select{ :'ng-model' => "orderField", :'ng-options' => "label for label in orderFields" }
+      %select{ :'ng-model' => "orderReverse" }
+        %option{ :value => "false" } Ascending
+        %option{ :value => "true"  } Descending
+
+  %table.pure-table.pure-table-horizontal
+    %thead
+      %tr
+        %td
+        %td Title
+        %td Description
+        %td Genre
+        %td Length
+        %td
+    %tbody
+      %tr{ :'ng-repeat' => "movie in movies | filter: keyword | genreFilter: filterForGenre | orderBy: sortOrder: orderReverse" }
+        %td
+          %a{ :href => "/movie/show/{{ movie.id }}" }
+            %img.thumbnail{ :'ng-src' => "{{ movie.thumb[0] }}" }
+        %td
+          %a{ :href => "/movie/show/{{ movie.id }}" } {{ movie.title }}
+        %td
+          {{ movie.description | truncate:147 }}
+        %td
+          %ul
+            %li{ :'ng-repeat' => "genre in movie.genres" }
+              {{ genre }}
+        %td
+          {{ movie.length }} mins
+        %td
+          %a.pure-button.pure-button-primary{ :href => "/movie/watch/{{ movie.id }}" }
+            %i.icon-play
+              watch

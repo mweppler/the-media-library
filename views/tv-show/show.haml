@@ -1,0 +1,26 @@
+%h1= "#{@tv_show.show}: #{@tv_show.title}"
+%table.pure-table
+  %tbody
+    %tr
+    - unless @tv_show.thumbnail.nil?
+      %tr
+        %td
+          %img.thumbnail-large{ :src => @tv_show.thumbnail }
+      %tr
+        %td= @tv_show.description
+      %tr
+        %td= "Season: #{@tv_show.season}"
+      %tr
+        %td= "Episode: #{@tv_show.episode}"
+      %tr
+        %td= @tv_show.genre
+      %tr
+        %td= "#{@tv_show.length} mins"
+      %tr
+        %td.actions
+          %a.pure-button{ :href => "/tv-show/edit/#{@tv_show.id}" }
+            %i.icon-edit
+              edit
+          %a.pure-button.pure-button-primary{ :href => "/tv-show/watch/#{@tv_show.id}" }
+            %i.icon-play
+              watch

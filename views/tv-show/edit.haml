@@ -1,0 +1,43 @@
+%form.pure-form.pure-form-aligned#tv-show-form{ :action => "/tv-show/update/#{@tv_show.id}", :method => "post", :enctype => "multipart/form-data" }
+  %fieldset
+    %legend= @title
+    .pure-control-group
+      %label Show:
+      %input#show{ :name => "tv_show[show]", :type => "text", :value => @tv_show.show }
+
+    .pure-control-group
+      %label Title:
+      %input#title{ :name => "tv_show[title]", :type => "text", :value => @tv_show.title }
+
+    .pure-control-group
+      %label Description:
+      %textarea#description{ :name => "tv_show[description]" }= @tv_show.description
+
+    .pure-control-group
+      %label Season:
+      %input#season{ :name => "tv_show[season]", :type => "text", :value => @tv_show.season }
+
+    .pure-control-group
+      %label Episode:
+      %input#episode{ :name => "tv_show[episode]", :type => "text", :value => @tv_show.episode }
+
+    .pure-control-group
+      %label Genre:
+      %input#genre{ :name => "tv_show[genre]", :type => "text", :value => @tv_show.genre }
+
+    .pure-control-group
+      %label Length:
+      %input#length{ :name => "tv_show[length]", :type => "text", :value => @tv_show.length }
+
+    .pure-control-group
+      %label>Image:
+      %input#image-file{ :name => "image-file", :type => "file" }
+
+    .pure-control-group
+      %label>TV Show:
+      %input#video-file{ :name => "video-file", :type => "file" }
+
+    .pure-controls
+      %button.pure-button.pure-button-primary{ :type => "submit" }
+        %i.icon-upload-alt
+          Submit

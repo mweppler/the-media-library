@@ -1,0 +1,10 @@
+.powrc
+.ruby-version
+.sass-cache
+db/db-migration.rb
+db/development.db*
+db/seeds.rb
+development.db
+media/
+public/media/
+tmp/

@@ -1,0 +1,58 @@
+%h1= @title
+%div{ :'ng-app' => "MediaLibrary", :'ng-controller' => "tvShowsController", :'ng-init' => "init()" }
+  .filters
+    %form.pure-form
+      %label Filter:
+      %input{ :'ng-model' => "keyword", :type => "text" }
+
+      %label Show:
+      %select{ :'ng-model' => "showFilter", :'ng-options' => "show for show in shows" }
+        %option{ :value => "" } All
+
+      %label Genre:
+      %select{ :'ng-model' => "genreFilter", :'ng-options' => "genre for genre in genres" }
+        %option{ :value => "" } All
+
+      %label Order by:
+      %select{ :'ng-model' => "orderField", :'ng-options' => "label for label in orderFields" }
+      %select{ :'ng-model' => "orderReverse" }
+        %option{ :value => "false" } Ascending
+        %option{ :value => "true"  } Descending
+
+  %table.pure-table.pure-table-horizontal
+    %thead
+      %tr
+        %td
+        %td Show
+        %td Title
+        %td Description
+        %td Season
+        %td Episode
+        %td Genre
+        %td Length
+        %td
+    %tbody
+      %tr{ :'ng-repeat' => "tvShow in tvShows | filter: keyword | genreFilter: filterForGenre | showFilter: filterForShow | orderBy: sortOrder: orderReverse" }
+        %td
+          %a{ :href => "/tv-show/show/{{ tvShow.id }}" }
+            %img.thumbnail{ :'ng-src' => "{{ tvShow.thumb[0] }}" }
+        %td
+          {{ tvShow.show }}
+        %td
+          %a{ :href => "/tv-show/show/{{ tvShow.id }}" } {{ tvShow.title }}
+        %td
+          {{ tvShow.description | truncate:147 }}
+        %td
+          {{ tvShow.season }}
+        %td
+          {{ tvShow.episode }}
+        %td
+          %ul
+            %li{ :'ng-repeat' => "genre in tvShow.genres" }
+              {{ genre }}
+        %td
+          {{ tvShow.length }} mins
+        %td
+          %a.pure-button.pure-button-primary{ :href => "/tv-show/watch/{{ tvShow.id }}" }
+            %i.icon-play
+              watch

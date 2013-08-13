@@ -1,0 +1,37 @@
+!!! 5
+%html{:lang => "en"}
+  %head
+    %meta{"http-equiv" => "X-UA-Compatible", :content => "IE=edge,chrome=1" }
+    %meta{ :charset => "utf-8" }
+    %title= @title || 'The Media Library'
+    %link{ :href => "http://yui.yahooapis.com/combo?pure/0.2.0/base-min.css&pure/0.2.0/grids-min.css&pure/0.2.0/forms-min.css&pure/0.2.0/buttons-min.css&pure/0.2.0/menus-min.css&pure/0.2.0/tables-min.css", :rel => "stylesheet" }
+    %link{ :href => "//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css", :rel => "stylesheet" }
+    %link{ :href => "/stylesheets/application.css", :rel => "stylesheet" }
+  %body
+    .nav
+      .container
+        .pure-menu.pure-menu-open.pure-menu-horizontal#horizontal-menu
+          %ul#std-menu-items
+            %li
+              %a{ :href => "/" } Home
+            %li.pure-menu-selected
+              %a{ :href => "/movies" } Movies
+              %ul
+                %li
+                  %a{ :href => "/movie/new" } Upload Movie
+            %li.pure-menu-selected
+              %a{ :href => "/tv-shows" } TV Shows
+              %ul
+                %li
+                  %a{ :href => "/tv-show/new" } Upload TV Show
+
+    .main
+      .container
+        = yield
+
+    %script{ :src => "//yui.yahooapis.com/3.10.3/build/yui/yui-min.js" }
+    %script{ :src => "/javascripts/header-nav.js" }
+    %script{ :src => "//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js" }
+    %script{ :src => "/javascripts/angjs-app/app.js" }
+    %script{ :src => "/javascripts/angjs-app/controllers/movies.js" }
+    %script{ :src => "/javascripts/angjs-app/controllers/tvShows.js" }

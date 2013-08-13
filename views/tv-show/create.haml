@@ -1,0 +1,4 @@
+%h1= @message
+- if @tv_show.errors
+  - @tv_show.errors.each do |error|
+    @tv_show.error
